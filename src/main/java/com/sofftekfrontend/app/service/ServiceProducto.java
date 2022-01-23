@@ -3,6 +3,8 @@ package com.sofftekfrontend.app.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.sofftekfrontend.app.models.Producto;
@@ -53,5 +55,6 @@ public class ServiceProducto implements ServiceInteface<Producto>{
 		p.setStock(t.getStock());
 		repositorio.save(p);
 	}
+	
 
 }

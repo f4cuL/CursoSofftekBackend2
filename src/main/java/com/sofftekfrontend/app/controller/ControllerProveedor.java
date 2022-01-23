@@ -5,12 +5,14 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sofftekfrontend.app.models.Proveedor;
@@ -43,6 +45,11 @@ public class ControllerProveedor {
 	@PutMapping("/proveedor/{id}")
 	public void modificarProveedor(@Valid @RequestBody Proveedor p, @PathVariable int id) {
 		service.update(p, id);
+	}
+	
+	@GetMapping("/proveedor/page/{pag}")
+	public Page<Proveedor> findAllPaginated(@PathVariable int pag) {
+		return service.findAllPaginated(pag,10);
 	}
 
 }

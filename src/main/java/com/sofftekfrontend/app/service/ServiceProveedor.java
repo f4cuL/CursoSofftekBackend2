@@ -3,6 +3,9 @@ package com.sofftekfrontend.app.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sofftekfrontend.app.models.Proveedor;
@@ -36,4 +39,10 @@ public class ServiceProveedor implements ServiceInteface<Proveedor> {
 		p.setDireccion(t.getDireccion());
 		repo.save(p);
 	}
+	
+	public Page<Proveedor> findAllPaginated(int page,int size){
+		return repo.findAll(PageRequest.of(page, size));
+	}
+	
+	
 }
