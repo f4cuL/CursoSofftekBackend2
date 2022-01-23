@@ -34,6 +34,10 @@ public class ControllerProducto {
 	public void delete(@PathVariable int id){
 		 service.delete(id);
 	}
+	@GetMapping("/producto/{id}")
+	public Producto findById(@PathVariable int id){
+		 return service.findById(id);
+	}
 	@PutMapping("/producto/{id}")
 	public void update(@RequestBody Producto p,@PathVariable int id){
 		 service.update(p,id);

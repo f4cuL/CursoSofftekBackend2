@@ -50,7 +50,8 @@ public class ServiceProducto implements ServiceInteface<Producto>{
 		Producto p = repositorio.findById(id).orElse(null);
 		p.setNombreProducto(t.getNombreProducto());
 		p.setPrecioProducto(t.getPrecioProducto());
-		p.setStock(t.getStock());	
+		p.setStock(t.getStock());
+		repositorio.save(p);
 	}
 
 }
