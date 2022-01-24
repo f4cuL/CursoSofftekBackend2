@@ -13,7 +13,7 @@ public class ControllerCliente {
 	
 	@Autowired
 	ServiceCliente service;
-	@PostMapping("/usuario/cliente")
+	@PostMapping("/usuario/registrar")
 	public Cliente registerClient(@RequestBody Cliente c) {
 		return service.save(c);
 	}
