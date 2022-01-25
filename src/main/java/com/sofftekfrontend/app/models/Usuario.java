@@ -21,6 +21,7 @@ public class Usuario extends PersistentEntity{
 	@NotBlank
 	@Column(name="nombre_usuario")
 	private String nombreUsuario;
+	
 	@NotBlank
 	@Column(name="password", nullable = false)
 	private String password;

@@ -6,6 +6,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -22,11 +23,16 @@ public class Producto extends PersistentEntity{
 	@ManyToOne(targetEntity = Proveedor.class)
 	//TODO Hacer TDO para Proveedor
 	private Proveedor proveedor;
+	
 	@Column(name="nombre_producto")
 	@NotBlank
 	private String nombreProducto;
+	
+	@Positive
 	@Column(name="precio_producto")
 	private double precioProducto;
+	
+	@Positive
 	@Column
 	private int stock;
 }

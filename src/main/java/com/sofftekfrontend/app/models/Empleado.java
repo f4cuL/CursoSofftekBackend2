@@ -16,7 +16,7 @@ import lombok.Setter;
 public class Empleado extends Usuario{
 	@Column
 	private String nombre;
+	
 	@Column
 	private String apellido;
-	//TODO Supervisor??
 }

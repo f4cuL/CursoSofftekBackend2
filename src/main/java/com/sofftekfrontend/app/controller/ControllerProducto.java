@@ -39,6 +39,11 @@ public class ControllerProducto {
 	public Producto findById(@PathVariable int id){
 		 return service.findById(id);
 	}
+	@GetMapping("/proveedor/{id}/producto/{page}")
+	public Page<Producto> findByAllPaginatedWithIDProveedor(@PathVariable int id, @PathVariable int page){
+		 return service.findAllPaginated(page,id);
+	}
+	
 	@PutMapping("/producto/{id}")
 	public void update(@RequestBody Producto p,@PathVariable int id){
 		 service.update(p,id);

@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.sofftekfrontend.app.models.Producto;
 import com.sofftekfrontend.app.models.Proveedor;
@@ -54,6 +57,15 @@ public class ServiceProducto implements ServiceInteface<Producto>{
 		p.setPrecioProducto(t.getPrecioProducto());
 		p.setStock(t.getStock());
 		repositorio.save(p);
+	}
+	public Page<Producto> findAllPaginated(int page, int id){
+		Proveedor p = repositorioProveedor.findById(id).orElse(null);
+		Pageable paging = PageRequest.of(page,10);
+		int start = Math.min((int)paging.getOffset(), p.getListaProductos().size());
+		int end = Math.min((start + paging.getPageSize()), p.getListaProductos().size());
+
+		Page<Producto> page1  = new PageImpl<>(p.getListaProductos().subList(start, end), paging, p.getListaProductos().size());
+		return page1;
 	}
 	
 

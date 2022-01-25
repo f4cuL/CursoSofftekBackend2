@@ -1,6 +1,7 @@
 package com.sofftekfrontend.app.models;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -27,10 +28,15 @@ public class DetalleOrden{
 	@JsonIgnore
 	@ManyToOne(targetEntity = Orden.class, cascade = CascadeType.ALL)
 	private Orden orden;
+	
 	@MapsId("idProducto")
 	@JoinColumn(name="id_producto")
 	@ManyToOne(targetEntity = Producto.class, cascade = CascadeType.ALL)
 	private Producto producto;
 	
+	@Column
 	int cantidad;
+	
+	@Column(name = "precio_venta_unitario")
+	int precioVentaUnitario;
 }

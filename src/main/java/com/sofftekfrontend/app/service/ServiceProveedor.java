@@ -8,13 +8,17 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.sofftekfrontend.app.models.Categoria;
 import com.sofftekfrontend.app.models.Proveedor;
+import com.sofftekfrontend.app.repository.RepositorioCategorias;
 import com.sofftekfrontend.app.repository.RepositorioProveedor;
 
 @Service
 public class ServiceProveedor implements ServiceInteface<Proveedor> {
 	@Autowired
 	private RepositorioProveedor repo;
+	@Autowired
+	private RepositorioCategorias repositorioCategoria;
 	
 	public List<Proveedor> findAll(){
 		return repo.findAll();
@@ -43,6 +47,25 @@ public class ServiceProveedor implements ServiceInteface<Proveedor> {
 	public Page<Proveedor> findAllPaginated(int page,int size){
 		return repo.findAll(PageRequest.of(page, size));
 	}
+	
+	public Proveedor addCategoriaToProveedor(int proveedor,int categoria){
+		Proveedor p = repo.findById(proveedor).orElse(null);
+		Categoria cat = repositorioCategoria.findById(categoria).orElse(null);
+		p.agregarCategoria(cat);	
+		return repo.save(p);
+	}
+	public List<Categoria> getCategoriasByIdProveedor(int proveedor){
+		Proveedor p = repo.findById(proveedor).orElse(null);
+		return p.getListaCategorias();
+	}
+	
+	public void removeCategoriaFromProveedor(int proveedor, int categoria){
+		Proveedor p = repo.findById(proveedor).orElse(null);
+		Categoria cat = repositorioCategoria.findById(categoria).orElse(null);
+		p.getListaCategorias().remove(p.getListaCategorias().indexOf(cat));
+		repo.save(p);
+	}
+	
 	
 	
 }
