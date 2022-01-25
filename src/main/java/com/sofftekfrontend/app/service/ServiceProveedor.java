@@ -19,23 +19,23 @@ public class ServiceProveedor implements ServiceInteface<Proveedor> {
 	private RepositorioProveedor repo;
 	@Autowired
 	private RepositorioCategorias repositorioCategoria;
-	
-	public List<Proveedor> findAll(){
+
+	public List<Proveedor> findAll() {
 		return repo.findAll();
 	}
-	
-	public Proveedor findById(int id){
+
+	public Proveedor findById(int id) {
 		return repo.findById(id).orElse(null);
 	}
-	
-	public Proveedor save(Proveedor p){
+
+	public Proveedor save(Proveedor p) {
 		return repo.save(p);
 	}
 
 	public void delete(int id) {
 		repo.deleteById(id);
-	}	
-	
+	}
+
 	public void update(Proveedor t, int id) {
 		Proveedor p = repo.findById(id).orElse(null);
 		p.setNombre(t.getNombre());
@@ -43,29 +43,30 @@ public class ServiceProveedor implements ServiceInteface<Proveedor> {
 		p.setDireccion(t.getDireccion());
 		repo.save(p);
 	}
-	
-	public Page<Proveedor> findAllPaginated(int page,int size){
+
+	public Page<Proveedor> findAllPaginated(int page, int size) {
 		return repo.findAll(PageRequest.of(page, size));
 	}
-	
-	public Proveedor addCategoriaToProveedor(int proveedor,int categoria){
+
+	public Proveedor addCategoriaToProveedor(int proveedor, int categoria) {
 		Proveedor p = repo.findById(proveedor).orElse(null);
 		Categoria cat = repositorioCategoria.findById(categoria).orElse(null);
-		p.agregarCategoria(cat);	
+		if (!p.getListaCategorias().contains(cat)) {
+			p.agregarCategoria(cat);
+		}
 		return repo.save(p);
 	}
-	public List<Categoria> getCategoriasByIdProveedor(int proveedor){
+
+	public List<Categoria> getCategoriasByIdProveedor(int proveedor) {
 		Proveedor p = repo.findById(proveedor).orElse(null);
 		return p.getListaCategorias();
 	}
-	
-	public void removeCategoriaFromProveedor(int proveedor, int categoria){
+
+	public void removeCategoriaFromProveedor(int proveedor, int categoria) {
 		Proveedor p = repo.findById(proveedor).orElse(null);
 		Categoria cat = repositorioCategoria.findById(categoria).orElse(null);
 		p.getListaCategorias().remove(p.getListaCategorias().indexOf(cat));
 		repo.save(p);
 	}
-	
-	
-	
+
 }
