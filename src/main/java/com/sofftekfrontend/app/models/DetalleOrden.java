@@ -18,18 +18,16 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "detalle_orden")
-public class DetalleOrden{
+public class DetalleOrden extends PersistentEntity{
 	
-	@EmbeddedId
-    DetalleOrdenKey id;
 	
-	@MapsId("idOrden")
+	//@MapsId("idOrden")
 	@JoinColumn(name="id_orden")
 	@JsonIgnore
 	@ManyToOne(targetEntity = Orden.class, cascade = CascadeType.ALL)
 	private Orden orden;
 	
-	@MapsId("idProducto")
+	//@MapsId("idProducto")
 	@JoinColumn(name="id_producto")
 	@ManyToOne(targetEntity = Producto.class, cascade = CascadeType.ALL)
 	private Producto producto;
@@ -38,5 +36,6 @@ public class DetalleOrden{
 	int cantidad;
 	
 	@Column(name = "precio_venta_unitario")
-	int precioVentaUnitario;
+	double precioVentaUnitario;
+	
 }

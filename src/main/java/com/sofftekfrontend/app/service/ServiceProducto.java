@@ -7,8 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.sofftekfrontend.app.models.Producto;
 import com.sofftekfrontend.app.models.Proveedor;
@@ -60,12 +60,15 @@ public class ServiceProducto implements ServiceInteface<Producto>{
 	}
 	public Page<Producto> findAllPaginated(int page, int id){
 		Proveedor p = repositorioProveedor.findById(id).orElse(null);
-		Pageable paging = PageRequest.of(page,10);
+		Pageable paging = PageRequest.of(page,10,Sort.by("nombreProducto"));
 		int start = Math.min((int)paging.getOffset(), p.getListaProductos().size());
 		int end = Math.min((start + paging.getPageSize()), p.getListaProductos().size());
 
 		Page<Producto> page1  = new PageImpl<>(p.getListaProductos().subList(start, end), paging, p.getListaProductos().size());
 		return page1;
+	}
+	public Page<Producto> findAll(int page){
+		return repositorio.findAll(PageRequest.of(page, 10,Sort.by("nombreProducto")));
 	}
 	
 

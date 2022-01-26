@@ -48,4 +48,9 @@ public class ControllerProducto {
 	public void update(@RequestBody Producto p,@PathVariable int id){
 		 service.update(p,id);
 	}
+	
+	@GetMapping("/producto/page/{page}")
+	public Page<Producto> findAllPage(@PathVariable int page){
+		 return service.findAll(page);
+	}
 }

@@ -48,7 +48,7 @@ public class Proveedor extends PersistentEntity{
 	@Size(min = 11, max=11)
 	private String cuit;
 	
-	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "proveedor_categoria", joinColumns = {
 			@JoinColumn(name = "id_proveedor") },

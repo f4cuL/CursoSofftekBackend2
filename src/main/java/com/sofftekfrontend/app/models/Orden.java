@@ -21,31 +21,35 @@ import lombok.Setter;
 @Table
 @Getter
 @Setter
-public class Orden extends PersistentEntity{
+public class Orden extends PersistentEntity {
 	@JsonBackReference
 	@ManyToOne(targetEntity = Cliente.class)
-	@JoinColumn(name="id_cliente")
+	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
-	
-	@JoinColumn(name="id_vendedor")
+
+	@JoinColumn(name = "id_vendedor")
 	@OneToOne(optional = true)
 	private Empleado empleado;
-	
-	@Column(name="fecha_generacion")
-    private java.sql.Date fechaGeneracion;
-	
-	@Column(name="fecha_entrega")
-    private java.sql.Date fechaEntrega;
-	
-	@Column(name="precio_total")
-	private int precioTotal;
-	
+
+	@Column(name = "fecha_generacion")
+	private java.sql.Date fechaGeneracion;
+
+	@Column(name = "fecha_entrega")
+	private java.sql.Date fechaEntrega;
+
+	@Column(name = "precio_total")
+	private double precioTotal;
+
 	@OneToMany(mappedBy = "orden", cascade = CascadeType.ALL)
 	private List<DetalleOrden> listaDetalle;
 
-	public Orden(List<DetalleOrden> listaDetalle) {
-		this.listaDetalle = new ArrayList<DetalleOrden>();
+	public void agregarDetalleOrden(DetalleOrden detalleOrden) {
+		detalleOrden.setOrden(this);
+		listaDetalle.add(detalleOrden);
 	}
 	
-	
+	public Orden() {
+		this.listaDetalle = new ArrayList<DetalleOrden>();
+	}
+
 }
