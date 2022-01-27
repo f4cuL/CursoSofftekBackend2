@@ -16,8 +16,7 @@ public class ServiceCliente implements ServiceInteface<Cliente> {
 	
 	@Override
 	public List<Cliente> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findAll();
 	}
 
 	@Override

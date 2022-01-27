@@ -1,5 +1,7 @@
 package com.sofftekfrontend.app.service;
 
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import com.sofftekfrontend.app.repository.RepositorioCliente;
 import com.sofftekfrontend.app.repository.RepositorioDetalleOrden;
 import com.sofftekfrontend.app.repository.RepositorioOrden;
 import com.sofftekfrontend.app.repository.RepositorioProducto;
+
 
 @Service
 public class ServiceOrden implements ServiceInteface<Orden>{
@@ -60,7 +63,7 @@ public class ServiceOrden implements ServiceInteface<Orden>{
 		for (Producto p : lista) {
 			Producto productoPersistido = repoProducto.findById(p.getId()).orElse(null);
 			productoPersistido.setStock(productoPersistido.getStock()-p.getStock());
-			//repoProducto.save(productoPersistido);
+			repoProducto.save(productoPersistido);
 			DetalleOrden aux = new DetalleOrden();
 			aux.setCantidad(p.getStock());
 			aux.setPrecioVentaUnitario(p.getPrecioProducto());
@@ -69,6 +72,8 @@ public class ServiceOrden implements ServiceInteface<Orden>{
 			aux.setOrden(ordenPersistida);
 			ordenPersistida.agregarDetalleOrden(aux);
 		}
+		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+		ordenPersistida.setFechaGeneracion(date);
 		ordenPersistida.setPrecioTotal(suma);
 		save(ordenPersistida);
 		
