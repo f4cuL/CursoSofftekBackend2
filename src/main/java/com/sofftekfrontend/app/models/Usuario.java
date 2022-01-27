@@ -17,8 +17,8 @@ import lombok.Setter;
 @Setter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-//@DiscriminatorColumn(name = "type")
-@Table(name="user")
+@DiscriminatorColumn(name = "type")
+@Table(name="user", schema = "public")
 public class Usuario extends PersistentEntity{
 	@NotBlank
 	@Column(name="username")
