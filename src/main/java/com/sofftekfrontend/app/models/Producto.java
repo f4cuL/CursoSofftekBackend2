@@ -33,7 +33,7 @@ public class Producto extends PersistentEntity{
 	@Column(name="precio_producto")
 	private double precioProducto;
 	
-	@Positive
+	@Min(0)
 	@Column
 	private int stock;
 }
