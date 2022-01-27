@@ -28,12 +28,12 @@ public class ControllerOrden {
 		return service.findById(id);
 	}
 
-	@PostMapping("/cliente/{idCliente}/checkout")
-	public String createOrdenCarrito(@RequestHeader(name = "Authorization")String token,@RequestBody List<Producto> lista, @PathVariable int idCliente) {
+	@PostMapping("/cliente/checkout")
+	public String createOrdenCarrito(@RequestHeader(name = "Authorization")String token,@RequestBody List<Producto> lista) {
 		if(!validarToken(token)) {
 			return "NOLOGIN";
 		}else {
-		service.createCart(lista, idCliente);
+		service.createCart(lista,Integer.parseInt(jwtUtil.getKey(token)));
 		return "CARRITOCREADO";
 		}
 	}

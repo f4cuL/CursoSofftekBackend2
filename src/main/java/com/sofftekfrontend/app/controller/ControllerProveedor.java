@@ -42,8 +42,11 @@ public class ControllerProveedor {
 	}
 
 	@PostMapping("/proveedor")
-	public Proveedor add(@Valid @RequestBody Proveedor p) {
-		return service.save(p);
+	public Proveedor add(@RequestHeader(value = "Authorization")String token, @Valid @RequestBody Proveedor p) {
+		if (validarToken(token).equals("ADMIN") || validarToken(token).equals("EMPLEADO") ) {
+			return service.save(p);
+		}
+		return null;
 	}
 
 	@DeleteMapping("/proveedor/{id}")

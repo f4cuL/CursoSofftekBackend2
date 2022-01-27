@@ -34,8 +34,6 @@ public class ControllerAuth {
 		if (usuarioLoggeado!=null) {
 			if(usuarioLoggeado.getPassword().equals(usuario.getPassword())) {
 				String tokenJwt =jwtUtil.create(String.valueOf(usuarioLoggeado.getId()), usuarioLoggeado.getRol().toString());
-				System.out.println(jwtUtil.getValue(tokenJwt));
-				System.out.println(jwtUtil.getKey(tokenJwt));
 				return tokenJwt;
 			}else {
 				return "BADPASSWORD";
