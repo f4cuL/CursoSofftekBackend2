@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sofftekfrontend.app.models.Cliente;
+import com.sofftekfrontend.app.models.Rol;
 import com.sofftekfrontend.app.service.ServiceCliente;
 
 @RestController
@@ -18,6 +19,7 @@ public class ControllerCliente {
 	ServiceCliente service;
 	@PostMapping("/usuario/registrar")
 	public Cliente registerClient(@RequestBody Cliente c) {
+		c.setRol(Rol.USUARIO);
 		return service.save(c);
 	}
 	@GetMapping("/usuario/cliente")
