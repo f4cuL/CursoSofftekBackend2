@@ -19,15 +19,6 @@ public class ControllerAuth {
 	@Autowired
 	private RepositorioUsuario repo;
 
-//	@RequestMapping(value="api/login", method = RequestMethod.POST)
-//	public String iniciarSesion(@RequestBody Usuario usuario) {
-//		Usuario usuarioLoggeado = usuarioDao.obtenerUsuarioPorVerificacion(usuario);
-//		if (usuarioLoggeado!=null) {
-//			String tokenJwt =jwtUtil.create(String.valueOf(usuarioLoggeado.getId()), usuarioLoggeado.getEmail());
-//			return tokenJwt;
-//		}
-//		return "fail";
-//}
 	@PostMapping("/usuario/login")
 	public String getUsuarioByUsername(@Valid @RequestBody Usuario usuario) {
 		Usuario usuarioLoggeado =  repo.findByUsername(usuario.getUsername());
