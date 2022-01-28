@@ -18,6 +18,7 @@ import com.sofftekfrontend.app.models.Rol;
 import com.sofftekfrontend.app.service.ServiceCliente;
 import com.sofftekfrontend.app.service.ServiceEmpleado;
 import com.sofftekfrontend.app.util.JWTUtil;
+
 @CrossOrigin(origins ="*")
 @RestController
 public class ControllerCliente {
