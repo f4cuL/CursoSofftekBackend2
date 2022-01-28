@@ -2,6 +2,8 @@ package com.sofftekfrontend.app.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,13 +28,13 @@ public class ControllerCliente {
 	@Autowired
 	private JWTUtil jwtUtil;
 	@PostMapping("/usuario/registrar")
-	public Cliente registerClient(@RequestBody Cliente c) {
+	public Cliente registerClient(@Valid @RequestBody Cliente c) {
 		c.setRol(Rol.USUARIO);
 		return service.save(c);
 	}
 	
 	@PostMapping("/empleado/crear")
-	public Empleado crearEmpleado(@RequestBody Empleado c) {
+	public Empleado crearEmpleado(@Valid @RequestBody Empleado c) {
 		return serviceEmpleado.save(c);
 	}
 	
