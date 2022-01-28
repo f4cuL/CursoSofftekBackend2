@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sofftekfrontend.app.models.Usuario;
 import com.sofftekfrontend.app.repository.RepositorioUsuario;
 import com.sofftekfrontend.app.util.JWTUtil;
-@CrossOrigin(origins ="https://retail-facu-sofftek-frontend.herokuapp.com/")
+@CrossOrigin(origins ="*")
 @RestController
 public class ControllerAuth {
 	@Autowired

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sofftekfrontend.app.models.Producto;
 import com.sofftekfrontend.app.models.Proveedor;
 import com.sofftekfrontend.app.service.ServiceProducto;
-@CrossOrigin(origins ="https://retail-facu-sofftek-frontend.herokuapp.com/")
+@CrossOrigin(origins ="*")
 @RestController
 public class ControllerProducto {
 	@Autowired

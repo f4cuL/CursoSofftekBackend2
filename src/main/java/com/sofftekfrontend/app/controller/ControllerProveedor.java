@@ -20,7 +20,7 @@ import com.sofftekfrontend.app.models.Categoria;
 import com.sofftekfrontend.app.models.Proveedor;
 import com.sofftekfrontend.app.service.ServiceProveedor;
 import com.sofftekfrontend.app.util.JWTUtil;
-@CrossOrigin(origins ="https://retail-facu-sofftek-frontend.herokuapp.com/")
+@CrossOrigin(origins ="*")
 @RestController
 public class ControllerProveedor {
 	@Autowired

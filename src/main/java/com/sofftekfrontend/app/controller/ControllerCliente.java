@@ -14,7 +14,7 @@ import com.sofftekfrontend.app.models.Cliente;
 import com.sofftekfrontend.app.models.Rol;
 import com.sofftekfrontend.app.service.ServiceCliente;
 import com.sofftekfrontend.app.util.JWTUtil;
-@CrossOrigin(origins ="https://retail-facu-sofftek-frontend.herokuapp.com/")
+@CrossOrigin(origins ="*")
 @RestController
 public class ControllerCliente {
 	

@@ -15,7 +15,7 @@ import com.sofftekfrontend.app.models.Orden;
 import com.sofftekfrontend.app.models.Producto;
 import com.sofftekfrontend.app.service.ServiceOrden;
 import com.sofftekfrontend.app.util.JWTUtil;
-@CrossOrigin(origins ="https://retail-facu-sofftek-frontend.herokuapp.com/")
+@CrossOrigin(origins ="*")
 @RestController
 public class ControllerOrden {
 	@Autowired
