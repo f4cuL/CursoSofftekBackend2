@@ -17,8 +17,7 @@ public class ServiceCliente implements ServiceInteface<Cliente> {
 	private RepositorioCliente repository;
 	@Autowired
 	private RepositorioUsuario repositoryUsuario;
-	
-	
+
 	@Override
 	public List<Cliente> findAll() {
 		return repository.findAll();
@@ -33,9 +32,8 @@ public class ServiceCliente implements ServiceInteface<Cliente> {
 	@Override
 	public Cliente save(Cliente t) {
 		Usuario aux = repositoryUsuario.findByUsername(t.getUsername());
-		if (aux!=null)
-		{
-		return repository.save(t);
+		if (aux == null) {
+			return repository.save(t);
 		}
 		return null;
 	}
@@ -43,12 +41,12 @@ public class ServiceCliente implements ServiceInteface<Cliente> {
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void update(Cliente t, int id) {
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
 	}
 
 }
