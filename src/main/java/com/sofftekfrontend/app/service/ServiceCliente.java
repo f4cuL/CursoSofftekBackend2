@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sofftekfrontend.app.models.Cliente;
+import com.sofftekfrontend.app.models.Usuario;
 import com.sofftekfrontend.app.repository.RepositorioCliente;
+import com.sofftekfrontend.app.repository.RepositorioUsuario;
 
 @Service
 public class ServiceCliente implements ServiceInteface<Cliente> {
 
 	@Autowired
 	private RepositorioCliente repository;
+	@Autowired
+	private RepositorioUsuario repositoryUsuario;
+	
 	
 	@Override
 	public List<Cliente> findAll() {
@@ -27,7 +32,12 @@ public class ServiceCliente implements ServiceInteface<Cliente> {
 
 	@Override
 	public Cliente save(Cliente t) {
+		Usuario aux = repositoryUsuario.findByUsername(t.getUsername());
+		if (aux!=null)
+		{
 		return repository.save(t);
+		}
+		return null;
 	}
 
 	@Override
