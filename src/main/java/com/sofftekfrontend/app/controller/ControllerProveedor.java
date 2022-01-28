@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,7 @@ import com.sofftekfrontend.app.models.Categoria;
 import com.sofftekfrontend.app.models.Proveedor;
 import com.sofftekfrontend.app.service.ServiceProveedor;
 import com.sofftekfrontend.app.util.JWTUtil;
-
+@CrossOrigin(origins ="https://retail-facu-sofftek-frontend.herokuapp.com/")
 @RestController
 public class ControllerProveedor {
 	@Autowired

@@ -3,6 +3,7 @@ package com.sofftekfrontend.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +15,7 @@ import com.sofftekfrontend.app.models.Orden;
 import com.sofftekfrontend.app.models.Producto;
 import com.sofftekfrontend.app.service.ServiceOrden;
 import com.sofftekfrontend.app.util.JWTUtil;
-
+@CrossOrigin(origins ="https://retail-facu-sofftek-frontend.herokuapp.com/")
 @RestController
 public class ControllerOrden {
 	@Autowired

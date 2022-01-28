@@ -3,6 +3,7 @@ package com.sofftekfrontend.app.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sofftekfrontend.app.models.Usuario;
 import com.sofftekfrontend.app.repository.RepositorioUsuario;
 import com.sofftekfrontend.app.util.JWTUtil;
-
+@CrossOrigin(origins ="https://retail-facu-sofftek-frontend.herokuapp.com/")
 @RestController
 public class ControllerAuth {
 	@Autowired
